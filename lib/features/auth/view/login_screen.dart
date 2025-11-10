@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trulyafricamarket/features/auth/view/sign_up_screen.dart';
+import 'package:trulyafricamarket/helpers/general_helper.dart';
 import 'package:trulyafricamarket/utils/colors/pallete.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -470,9 +472,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          // Navigate to sign up
-                        },
+                   onTap: () async{
+                      GeneralHelpers.temporaryNavigator(context, const SignUpScreen());
+                    },
                         child: Text(
                           'Sign Up',
                           style: GoogleFonts.poppins(
