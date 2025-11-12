@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trulyafricamarket/features/cart/view/cart_screen.dart';
 import 'package:trulyafricamarket/features/products/view/product_details_screen.dart';
+import 'package:trulyafricamarket/features/products/view/search_product.dart';
 import 'package:trulyafricamarket/utils/colors/pallete.dart';
 
 class ShopScreen extends StatefulWidget {
@@ -386,6 +387,32 @@ class _ShopScreenState extends State<ShopScreen> {
     );
   }
 
+
+  void _navigateToSearchScreen() {
+  Navigator.push(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => SearchScreen(
+        allProducts: _products,
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+        
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+  );
+}
+
   void _addToCart(Productt product) {
     setState(() {
       _cartItemCount++;
@@ -520,24 +547,25 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
     );
   }
-
-  Widget _buildSearchBarWithCart() {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
+Widget _buildSearchBarWithCart() {
+  return Container(
+    height: 50,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.1),
+          blurRadius: 10,
+          offset: Offset(0, 4),
+        ),
+      ],
+    ),
+    child: Row(
+      children: [
+        Expanded(
+          child: GestureDetector(
+            onTap: _navigateToSearchScreen,
             child: Container(
               height: 50,
               decoration: BoxDecoration(
@@ -554,19 +582,11 @@ class _ShopScreenState extends State<ShopScreen> {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: TextField(
-                      controller: _searchController,
+                    child: Text(
+                      'Search products...',
                       style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: Pallete.lightPrimaryTextColor,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: 'Search products...',
-                        hintStyle: GoogleFonts.poppins(
-                          fontSize: 13,
-                          color: Pallete.lightPrimaryTextColor.withOpacity(0.5),
-                        ),
-                        border: InputBorder.none,
+                        fontSize: 13,
+                        color: Pallete.lightPrimaryTextColor.withOpacity(0.5),
                       ),
                     ),
                   ),
@@ -574,75 +594,76 @@ class _ShopScreenState extends State<ShopScreen> {
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          
-          // Cart Icon with Counter
-          Stack(
-            children: [
-              GestureDetector(
-                  onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CartScreen(),
-          ),
-        );
-      },
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Pallete.primaryColor,
-                    borderRadius: BorderRadius.circular(16),
+        ),
+        const SizedBox(width: 12),
+        
+        // Cart Icon with Counter
+        Stack(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(),
                   ),
-                  child: Icon(
-                    Iconsax.shopping_bag,
-                    color: Colors.white,
-                    size: 20,
+                );
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Pallete.primaryColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Icon(
+                  Iconsax.shopping_bag,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+            ),
+            
+            // Cart Counter Badge
+            if (_cartItemCount > 0)
+              Positioned(
+                top: 8,
+                right: 8,
+                child: Container(
+                  width: 18,
+                  height: 18,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder: (Widget child, Animation<double> animation) {
+                      return ScaleTransition(
+                        scale: animation,
+                        child: child,
+                      );
+                    },
+                    child: Text(
+                      _cartItemCount > 9 ? '9+' : _cartItemCount.toString(),
+                      key: ValueKey<int>(_cartItemCount),
+                      style: GoogleFonts.poppins(
+                        fontSize: 8,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
-              
-              // Cart Counter Badge
-              if (_cartItemCount > 0)
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: Container(
-                    width: 18,
-                    height: 18,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
-                    ),
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      transitionBuilder: (Widget child, Animation<double> animation) {
-                        return ScaleTransition(
-                          scale: animation,
-                          child: child,
-                        );
-                      },
-                      child: Text(
-                        _cartItemCount > 9 ? '9+' : _cartItemCount.toString(),
-                        key: ValueKey<int>(_cartItemCount),
-                        style: GoogleFonts.poppins(
-                          fontSize: 8,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
   Widget _buildCategories() {
     return Container(

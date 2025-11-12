@@ -37,7 +37,7 @@ class AdvertisingComponent extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.poppins(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
               ),
@@ -160,7 +160,7 @@ class AdvertisingComponent extends StatelessWidget {
                                         Text(
                                           product.name,
                                           style: GoogleFonts.poppins(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black87,
                                           ),
@@ -173,7 +173,7 @@ class AdvertisingComponent extends StatelessWidget {
                                           style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400,
-                                            color: Colors.grey[600],
+                                            color: Pallete.primaryColor,
                                           ),
                                         ),
                                       ],

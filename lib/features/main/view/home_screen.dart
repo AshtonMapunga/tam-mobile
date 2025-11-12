@@ -166,38 +166,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const SizedBox(height: 20),
 
-                      AdvertisingComponent(
-                        title: "Best offer",
-                        products: _advertisingProducts,
-                        onProductPressed: _onAdvertsingProductPressed,
-                      ),
-                      const SizedBox(height: 20),
+                      // AdvertisingComponent(
+                      //   title: "Best offer",
+                      //   products: _advertisingProducts,
+                      //   onProductPressed: _onAdvertsingProductPressed,
+                      // ),
+                      // const SizedBox(height: 20),
 
-                      AdvertisingComponent(
-                        height: 200,
-                        title: "Our Collection",
-                        products: _advertisingProducts,
-                        onProductPressed: _onAdvertsingProductPressed,
-                        backgroundImageUrl:
-                            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
-                        showProductName: false,
-                        productImageHeight: 180,
-                      ),
-                      const SizedBox(height: 20),
+                      // AdvertisingComponent(
+                      //   height: 200,
+                      //   title: "Our Collection",
+                      //   products: _advertisingProducts,
+                      //   onProductPressed: _onAdvertsingProductPressed,
+                      //   backgroundImageUrl:
+                      //       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
+                      //   showProductName: false,
+                      //   productImageHeight: 180,
+                      // ),
+                      // const SizedBox(height: 20),
 
-                      // With background image, centered products
-                      AdvertisingComponent(
-                        height: 250,
-                        title: "Our Collection",
-                        products: _advertisingProducts,
-                        onProductPressed: _onAdvertsingProductPressed,
-                        backgroundImageUrl:
-                            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
-                        showProductName: false,
-                        productImageHeight: 120,
-                        borderRadius: 20.0,
-                      ),
-                      const SizedBox(height: 20),
+                      // // With background image, centered products
+                      // AdvertisingComponent(
+                      //   height: 250,
+                      //   title: "Our Collection",
+                      //   products: _advertisingProducts,
+                      //   onProductPressed: _onAdvertsingProductPressed,
+                      //   backgroundImageUrl:
+                      //       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
+                      //   showProductName: false,
+                      //   productImageHeight: 120,
+                      //   borderRadius: 20.0,
+                      // ),
+                      // const SizedBox(height: 20),
 
                       // Another example with different settings
                       AdvertisingComponent(

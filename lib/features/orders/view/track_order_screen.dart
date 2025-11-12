@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:trulyafricamarket/features/chat/view/chat_screen.dart';
 import 'package:trulyafricamarket/features/orders/view/order_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:trulyafricamarket/utils/colors/pallete.dart';
@@ -83,17 +84,23 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   }
 
   void _launchMaps() async {
-    final url = 'https://www.google.com/maps/dir/?api=1&destination=${_deliveryLocation.latitude},${_deliveryLocation.longitude}';
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not launch maps app'),
-          backgroundColor: Colors.red,
-        ),
+    // final url = 'https://www.google.com/maps/dir/?api=1&destination=${_deliveryLocation.latitude},${_deliveryLocation.longitude}';
+    // if (await canLaunchUrl(Uri.parse(url))) {
+    //   await launchUrl(Uri.parse(url));
+
+    // } else {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text('Could not launch maps app'),
+    //       backgroundColor: Colors.red,
+    //     ),
+    //   );
+    // }
+
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ChatScreen(orderId: '123', driverName: 'Ashton Mapunga', driverImage: 'yu', vehicleNumber: 'ABC 123',)),
       );
-    }
   }
 
   void _callDeliveryDriver() {
@@ -507,10 +514,10 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Iconsax.map, size: 16),
+                            Icon(Iconsax.message, size: 16),
                             SizedBox(width: 6),
                             Text(
-                              'Rate Driver',
+                              'Chat with Driver',
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,

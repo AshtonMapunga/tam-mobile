@@ -44,7 +44,7 @@ class SpecialOfferComponent extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.poppins(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -53,7 +53,7 @@ class SpecialOfferComponent extends StatelessWidget {
                 Text(
                   description,
                   style: GoogleFonts.poppins(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
@@ -72,7 +72,7 @@ class SpecialOfferComponent extends StatelessWidget {
                     child: Text(
                       buttonText,
                       style: GoogleFonts.poppins(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                         color: backgroundColor,
                       ),
